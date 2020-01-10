@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Print Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list-header>
+    Paired Devices
+  </ion-list-header>
+  <ion-item padding *ngFor="let device of pairedDevices">
+    <ion-col>
+      {{device.name}}
+      
+      <ion-row>
+        Test Print
+      </ion-row>
+      <ion-row>
+        <ion-button shape="round" color="light" (click)="testPrint(device.address)">
+          <ion-icon name="print" color="dark">Print</ion-icon>
+        </ion-button>
+      </ion-row>
+      <ion-row>
+        Print Invoice
+      </ion-row>
+      <ion-row>
+        <ion-button shape="round" color="light" (click)="printInv(device.address)">
+          <ion-icon name="print" color="dark">Print</ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-col>
+  </ion-item>
+</ion-content>

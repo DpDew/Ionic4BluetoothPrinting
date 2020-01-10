@@ -1,14 +1,36 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
-</ion-content>
+<ion-list padding>
+  <ion-button expand="full" (click)="startScanning()">scan</ion-button>
+  <ion-list-header>
+    Paired Devices
+  </ion-list-header>
+  <ion-item *ngFor="let device of pairedDevices">
+    <ion-col>{{device.name}}</ion-col>
+    <ion-col size="2">
+      <ion-row>
+        <ion-button shape="round" color="light" (click)="testPrint(device.address)">
+          <ion-icon name="print" color="dark"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-col>
+  </ion-item>
+
+  <ion-button expand="full" (click)="disconnect()">Disconnect</ion-button>
+  <ion-list-header>
+    availlable Devices
+  </ion-list-header>
+  <ion-item *ngFor='let device of unpairedDevices'>
+    <span (click)="selectDevice(device.address)">
+      {{device.name}}
+    </span>
+  </ion-item>
+  <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
+</ion-list>
